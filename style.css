@@ -1,0 +1,588 @@
+/* ==============================
+   🎁 نظام محل الهدايا
+   ============================== */
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #fff7fb;
+    color: #4a3b47;
+}
+
+
+/* ================= HEADER ================= */
+
+header {
+    background: linear-gradient(
+        135deg,
+        #ff7eb3,
+        #c084fc
+    );
+
+    color: white;
+    text-align: center;
+    padding: 25px;
+
+    box-shadow: 0 4px 12px #e8c5da;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 50px;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+
+/* ================= MAIN ================= */
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+
+/* ================= DASHBOARD ================= */
+
+.dashboard {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+
+    flex: 1;
+    min-width: 180px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 12px #f0c9dc;
+
+    border-top: 5px solid #ff7eb3;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.clickable-card {
+    cursor: pointer;
+}
+
+.clickable-card:hover {
+    box-shadow: 0 8px 20px #dfb7cf;
+}
+
+.card-icon {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.card h3 {
+    margin: 5px 0;
+    color: #704c63;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c05a91;
+    margin: 10px 0 0;
+}
+
+.card small {
+    display: block;
+    color: #9b4f78;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+
+/* ================= BOX ================= */
+
+.box {
+    background: white;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 12px #f0c9dc;
+}
+
+.box h2 {
+    color: #9b4f78;
+    margin-top: 0;
+}
+
+
+/* ================= WAREHOUSE ================= */
+
+.warehouse-section {
+    border-top: 5px solid #c084fc;
+
+    animation:
+        warehouseOpen 0.3s ease;
+}
+
+.warehouse-sales-section {
+    border-top: 5px solid #ff7eb3;
+}
+
+@keyframes warehouseOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================= FORM ================= */
+
+.form {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+}
+
+input {
+    padding: 12px;
+
+    margin: 5px;
+
+    border: 2px solid #f3c4dc;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: #fffafd;
+}
+
+input:focus {
+    border-color: #c084fc;
+
+    box-shadow: 0 0 5px #e5c9f7;
+}
+
+
+/* ================= BUTTON ================= */
+
+button {
+    padding: 12px 20px;
+
+    background: #ff7eb3;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e85d9b;
+
+    transform: scale(1.03);
+}
+
+.close-btn {
+    background: #c084fc;
+}
+
+.close-btn:hover {
+    background: #9d5ed1;
+}
+
+
+/* ================= DELETE ================= */
+
+.delete-btn {
+    background: #ff5c7a;
+
+    padding: 8px 14px;
+
+    font-size: 13px;
+}
+
+.delete-btn:hover {
+    background: #e6395b;
+
+    transform: scale(1.05);
+}
+
+
+/* ================= SECTION TITLE ================= */
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.section-title span {
+    background: #ffe1ee;
+
+    color: #9b4f78;
+
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+}
+
+
+/* ================= TABLE ================= */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 15px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+}
+
+th,
+td {
+    padding: 14px 12px;
+
+    border-bottom: 1px solid #f3d6e5;
+
+    text-align: center;
+}
+
+th {
+    background: #ffe1ee;
+
+    color: #8f4770;
+}
+
+tr:hover {
+    background: #fff7fb;
+}
+
+
+/* ================= DESCRIPTION ================= */
+
+.description {
+    color: #806b78;
+
+    margin-bottom: 15px;
+}
+
+
+/* ================= BARCODE ================= */
+
+.barcode-sale-section {
+    border-top: 5px solid #c084fc;
+}
+
+.barcode-search {
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 15px;
+}
+
+.barcode-search input {
+    flex: 1;
+
+    min-width: 250px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.barcode-search button {
+    background: #c084fc;
+}
+
+.barcode-search button:hover {
+    background: #9d5ed1;
+}
+
+
+/* ================= BARCODE INFO ================= */
+
+.barcode-product-info {
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    background: #fff0f7;
+
+    border: 2px solid #f3c4dc;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+}
+
+.barcode-product-info div {
+    background: white;
+
+    padding: 12px 18px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 2px 7px #efd4e2;
+}
+
+.barcode-product-info strong {
+    color: #9b4f78;
+}
+
+.barcode-product-info span {
+    font-weight: bold;
+
+    color: #c05a91;
+}
+
+
+/* ================= MONTHLY ================= */
+
+.monthly-section {
+    border-top: 5px solid #c084fc;
+}
+
+.monthly-clear-box {
+    background: #fff0f7;
+
+    border: 2px solid #f3c4dc;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.monthly-clear-box h3 {
+    color: #9b4f78;
+
+    margin-top: 0;
+}
+
+.monthly-clear-box p {
+    color: #806b78;
+}
+
+.monthly-clear-btn {
+    background: #c084fc;
+}
+
+.monthly-clear-btn:hover {
+    background: #9d5ed1;
+}
+
+
+/* ================= ARCHIVE ================= */
+
+.archive-item {
+    background: #fff7fb;
+
+    border: 2px solid #f3d6e5;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.archive-info h3 {
+    margin: 0 0 8px;
+
+    color: #9b4f78;
+}
+
+.archive-info p {
+    margin: 5px 0;
+
+    color: #806b78;
+}
+
+.archive-total {
+    font-size: 20px;
+
+    font-weight: bold;
+
+    color: #c05a91;
+}
+
+.archive-delete-btn {
+    background: #ff5c7a;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty-message {
+    text-align: center;
+
+    color: #9b8792;
+
+    padding: 25px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    main {
+        width: 95%;
+    }
+
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .header-content {
+        flex-direction: column;
+    }
+
+    .form {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    input,
+    button {
+        width: 100%;
+
+        margin: 5px 0;
+    }
+
+    .section-title {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .barcode-search {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .barcode-search input,
+    .barcode-search button {
+        width: 100%;
+    }
+
+    .barcode-product-info {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 9px 5px;
+    }
+
+    .archive-item {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        text-align: center;
+    }
+
+}
+
