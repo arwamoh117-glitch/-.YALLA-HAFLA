@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🎁 يلا حفلة</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+
+        <div class="logo">🎁</div>
+
+        <div>
+            <h1>يــــــلا حــــــفــــــلــــــة 🎊✨</h1>
+            <p>إدارة المنتجات والمبيعات والمخزون بسهولة ✨</p>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section class="dashboard">
+
+        <div class="card sales-card">
+            <div class="card-icon">💰</div>
+            <h3>مبيعات اليوم</h3>
+            <p id="todaySales">0 جنيه</p>
+        </div>
+
+
+        <div class="card monthly-card">
+            <div class="card-icon">📅</div>
+            <h3>مبيعات الشهر</h3>
+            <p id="monthlySales">0 جنيه</p>
+        </div>
+
+
+        <div class="card products-card">
+            <div class="card-icon">🎁</div>
+            <h3>عدد المنتجات</h3>
+            <p id="productsCount">0</p>
+        </div>
+
+
+        <div class="card stock-card clickable-card" onclick="openWarehouse()">
+
+            <div class="card-icon">📦</div>
+
+            <h3>مخزون المخزن</h3>
+
+            <p id="totalStock">0</p>
+
+            <small>اضغطي لفتح المخزن 👆</small>
+
+        </div>
+
+
+        <div class="card warning-card">
+
+            <div class="card-icon">⚠️</div>
+
+            <h3>مخزون قليل</h3>
+
+            <p id="lowStock">0</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WAREHOUSE ================= -->
+
+    <section id="warehouseSection" class="box warehouse-section" style="display:none;">
+
+        <div class="section-title">
+
+            <h2>📦 مخزن المنتجات</h2>
+
+            <button class="close-btn" onclick="closeWarehouse()">
+                ❌ إغلاق
+            </button>
+
+        </div>
+
+
+        <p class="description">
+            المنتجات الموجودة هنا منفصلة تمامًا عن المنتجات الأساسية.
+        </p>
+
+
+        <div class="form">
+
+            <input
+                type="text"
+                id="warehouseProductName"
+                placeholder="اسم المنتج">
+
+            <input
+                type="text"
+                id="warehouseProductBarcode"
+                placeholder="🔢 باركود المنتج"
+                inputmode="numeric">
+
+            <input
+                type="number"
+                id="warehouseProductQuantity"
+                placeholder="الكمية"
+                min="1">
+
+            <input
+                type="number"
+                id="warehouseProductPrice"
+                placeholder="سعر البيع"
+                min="0">
+
+            <button onclick="addWarehouseProduct()">
+                ➕ إضافة للمخزن
+            </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>🎁 المنتج</th>
+                        <th>🔢 الباركود</th>
+                        <th>📦 الكمية</th>
+                        <th>💰 السعر</th>
+                        <th>📊 الحالة</th>
+                        <th>🗑️ حذف</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="warehouseTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ADD PRODUCT ================= -->
+
+    <section class="box">
+
+        <h2>🎁 إضافة منتج جديد</h2>
+
+        <div class="form">
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="اسم المنتج">
+
+            <input
+                type="text"
+                id="productBarcode"
+                placeholder="🔢 باركود المنتج"
+                inputmode="numeric">
+
+            <input
+                type="number"
+                id="productQuantity"
+                placeholder="الكمية"
+                min="1">
+
+            <input
+                type="number"
+                id="productPrice"
+                placeholder="سعر البيع"
+                min="0">
+
+            <button onclick="addProduct()">
+                ➕ إضافة المنتج
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="box">
+
+        <div class="section-title">
+
+            <h2>🎁 المنتجات الموجودة</h2>
+
+            <span id="productsNumber">
+                0 منتج
+            </span>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>🎁 المنتج</th>
+                        <th>🔢 الباركود</th>
+                        <th>📦 الكمية</th>
+                        <th>💰 السعر</th>
+                        <th>📊 الحالة</th>
+                        <th>🗑️ حذف</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="productsTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BARCODE SALE ================= -->
+
+    <section class="box barcode-sale-section">
+
+        <h2>🔍 البيع بالباركود</h2>
+
+        <p class="description">
+            امسحي الباركود باستخدام جهاز Barcode Scanner
+            أو اكتبيه يدويًا، وسيظهر المنتج تلقائيًا.
+        </p>
+
+
+        <div class="barcode-search">
+
+            <input
+                type="text"
+                id="saleBarcode"
+                placeholder="🔢 امسحي الباركود هنا"
+                inputmode="numeric"
+                autocomplete="off"
+                oninput="searchSaleBarcode()"
+                onkeydown="barcodeEnter(event)">
+
+            <button onclick="searchSaleBarcode()">
+                🔎 بحث
+            </button>
+
+        </div>
+
+
+        <div
+            id="barcodeProductInfo"
+            class="barcode-product-info"
+            style="display:none;">
+
+            <div>
+                <strong>🎁 المنتج:</strong>
+                <span id="barcodeProductName">-</span>
+            </div>
+
+            <div>
+                <strong>💰 السعر:</strong>
+                <span id="barcodeProductPrice">-</span>
+            </div>
+
+            <div>
+                <strong>📦 المتاح:</strong>
+                <span id="barcodeProductQuantity">-</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SELL PRODUCT ================= -->
+
+    <section class="box sales-section">
+
+        <h2>🛒 تسجيل عملية بيع</h2>
+
+        <p class="description">
+            يمكنكِ البيع باسم المنتج أو باستخدام الباركود.
+        </p>
+
+
+        <div class="form">
+
+            <input
+                type="text"
+                id="saleProduct"
+                placeholder="اسم المنتج">
+
+            <input
+                type="number"
+                id="saleQuantity"
+                placeholder="الكمية المباعة"
+                min="1">
+
+            <button onclick="sellProduct()">
+                🛒 تسجيل البيع
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TODAY SALES ================= -->
+
+    <section class="box">
+
+        <div class="section-title">
+
+            <h2>💰 مبيعات اليوم</h2>
+
+            <span id="salesCount">
+                0 عملية
+            </span>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>🎁 المنتج</th>
+                        <th>📍 المصدر</th>
+                        <th>📦 الكمية</th>
+                        <th>💵 سعر الوحدة</th>
+                        <th>💰 الإجمالي</th>
+                        <th>🗑️ حذف</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="salesTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WAREHOUSE SALES ================= -->
+
+    <section
+        id="warehouseSalesSection"
+        class="box warehouse-sales-section"
+        style="display:none;">
+
+        <h2>🛒 بيع من المخزن</h2>
+
+        <p class="description">
+            البيع من هنا يخصم الكمية من مخزون المخزن فقط.
+        </p>
+
+
+        <div class="barcode-search">
+
+            <input
+                type="text"
+                id="warehouseSaleBarcode"
+                placeholder="🔢 باركود منتج المخزن"
+                inputmode="numeric"
+                autocomplete="off"
+                oninput="findWarehouseProductByBarcode()">
+
+            <button onclick="findWarehouseProductByBarcode()">
+                🔎 بحث
+            </button>
+
+        </div>
+
+
+        <div
+            id="warehouseBarcodeInfo"
+            class="barcode-product-info"
+            style="display:none;">
+
+            <div>
+                <strong>🎁 المنتج:</strong>
+                <span id="warehouseBarcodeName">-</span>
+            </div>
+
+            <div>
+                <strong>💰 السعر:</strong>
+                <span id="warehouseBarcodePrice">-</span>
+            </div>
+
+            <div>
+                <strong>📦 المتاح:</strong>
+                <span id="warehouseBarcodeQuantity">-</span>
+            </div>
+
+        </div>
+
+
+        <div class="form">
+
+            <input
+                type="text"
+                id="warehouseSaleProduct"
+                placeholder="اسم المنتج من المخزن">
+
+            <input
+                type="number"
+                id="warehouseSaleQuantity"
+                placeholder="الكمية المباعة"
+                min="1">
+
+            <button onclick="sellWarehouseProduct()">
+                🛒 بيع من المخزن
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MONTHLY CLEAR ================= -->
+
+    <section class="box monthly-section">
+
+        <div class="section-title">
+
+            <h2>📅 تصفية مبيعات الشهور</h2>
+
+        </div>
+
+
+        <p class="description">
+            يمكنكِ حفظ مبيعات الشهر الحالي في الأرشيف،
+            وبعدها تصفية مبيعات الشهر بدون حذف المنتجات أو المخزون.
+        </p>
+
+
+        <div id="monthlyClearArea"></div>
+
+    </section>
+
+
+    <!-- ================= MONTHLY ARCHIVE ================= -->
+
+    <section class="box">
+
+        <div class="section-title">
+
+            <h2>📚 أرشيف الشهور</h2>
+
+            <span id="archiveCount">
+                0 شهر
+            </span>
+
+        </div>
+
+
+        <div id="monthlyArchive"></div>
+
+    </section>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
